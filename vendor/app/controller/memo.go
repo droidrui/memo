@@ -30,6 +30,7 @@ func createMemo(w http.ResponseWriter, r *http.Request) {
 		response.SendError(w, errcode.ParamInvalid)
 		return
 	}
+	fmt.Println("title=", title, "content=", content)
 	result, err := database.SQL.Exec("INSERT INTO memo(title, content, uid) VALUES(?,?,?)", title, content, uid)
 	if err != nil {
 		log.Println(err)
