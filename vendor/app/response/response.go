@@ -27,6 +27,7 @@ func SendError(w http.ResponseWriter, code int) {
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
+	fmt.Println(string(js))
 	w.Write(js)
 }
 
@@ -43,5 +44,6 @@ func SendSuccess(w http.ResponseWriter, data interface{}) {
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
+	fmt.Println(string(js))
 	w.Write(js)
 }
