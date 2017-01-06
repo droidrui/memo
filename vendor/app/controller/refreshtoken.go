@@ -4,7 +4,6 @@ import (
 	"app/route"
 	"net/http"
 	"app/route/middleware"
-	"github.com/gorilla/context"
 	"fmt"
 	"app/response"
 	"app/response/errcode"
@@ -20,9 +19,6 @@ func init() {
 }
 
 func refreshToken(w http.ResponseWriter, r *http.Request) {
-	uid := context.Get(r, "uid")
-	phone := context.Get(r, "phone")
-	fmt.Println("uid=", uid, "phone=", phone)
 	refreshToken := r.FormValue("refreshToken")
 	if refreshToken == "" {
 		response.SendError(w, errcode.ParamInvalid)

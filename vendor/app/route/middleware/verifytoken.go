@@ -40,6 +40,7 @@ func VerifyToken(next http.HandlerFunc) http.HandlerFunc {
 			}
 			context.Set(r, "uid", uid)
 			context.Set(r, "phone", phone)
+			fmt.Println("verify accessToken success", "uid=", uid, "phone=", phone)
 			next.ServeHTTP(w, r)
 		} else {
 			response.SendError(w, errcode.AccessTokenInvalid)
