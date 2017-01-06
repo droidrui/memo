@@ -5,7 +5,6 @@ import (
 	"app/database"
 	"app/controller"
 	"app/server"
-	"app/route"
 )
 
 func init() {
@@ -15,5 +14,5 @@ func init() {
 func main() {
 	database.Connect()
 	controller.Load()
-	server.Run(route.LoadHttp())
+	server.Run()
 }

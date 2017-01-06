@@ -83,7 +83,7 @@ func createUser(w http.ResponseWriter, phone, password string) {
 	loginInfo := model.LoginInfo{
 		AccessToken: accessToken,
 		RefreshToken:refreshToken,
-		User:        user,
+		User:        &user,
 	}
 	response.SendSuccess(w, &loginInfo)
 }

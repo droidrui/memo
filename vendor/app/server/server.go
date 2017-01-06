@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"time"
 	"log"
+	"app/route"
 )
 
-func Run(handler http.Handler) {
+func Run() {
 	fmt.Println(time.Now().Format("2006-01-02 15:04:05"), "Running HTTP "+httpAddress())
-	log.Fatal(http.ListenAndServe(httpAddress(), handler))
+	log.Fatal(http.ListenAndServe(httpAddress(), route.LoadHttp()))
 }
 
 func httpAddress() string {

@@ -3,8 +3,8 @@ package route
 import (
 	"github.com/julienschmidt/httprouter"
 	"net/http"
-	"app/route/middleware/logrequest"
 	"github.com/gorilla/context"
+	"app/route/middleware"
 )
 
 var router *httprouter.Router
@@ -14,11 +14,11 @@ func init() {
 }
 
 func LoadHttp() http.Handler {
-	return middleware(router)
+	return handle(router)
 }
 
-func middleware(h http.Handler) http.Handler {
-	h = logrequest.Handler(h)
+func handle(h http.Handler) http.Handler {
+	h = middleware.LogRequest(h)
 	h = context.ClearHandler(h)
 	return h
 }

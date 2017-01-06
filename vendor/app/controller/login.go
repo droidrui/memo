@@ -69,7 +69,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	loginInfo := model.LoginInfo{
 		AccessToken: accessToken,
 		RefreshToken:refreshToken,
-		User:        user,
+		User:        &user,
 	}
 	response.SendSuccess(w, &loginInfo)
 }
