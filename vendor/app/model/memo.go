@@ -5,5 +5,5 @@ type Memo struct {
 	Title     string `db:"title" json:"title"`
 	Content   string `db:"content" json:"content"`
 	CreatedAt string `db:"createdAt" json:"createdAt"`
-	Uid       uint32 `db:"uid", json:"uid"`
+	Uid       uint32 `db:"uid" json:"uid"`
 }

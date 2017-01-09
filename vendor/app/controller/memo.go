@@ -66,7 +66,24 @@ func updateMemo(w http.ResponseWriter, r *http.Request) {
 }
 
 func getMemo(w http.ResponseWriter, r *http.Request) {
-	uid := context.Get(r, "uid")
-	phone := context.Get(r, "phone")
-	fmt.Println("uid=", uid, "phone=", phone)
+	var uid interface{} = r.FormValue("uid")
+	if uid == "" {
+		uid = context.Get(r, "uid")
+		phone := context.Get(r, "phone")
+		fmt.Println("uid=", uid, "phone=", phone)
+	}
+	fmt.Println("uid=", uid)
+	var err error
+	var list []model.Memo
+	err = database.SQL.Select(&list, "SELECT * FROM memo WHERE uid=? ORDER BY createdAt DESC", uid)
+	if err != nil {
+		log.Println(err)
+		response.SendError(w, errcode.ServerError)
+		return
+	}
+	if len(list) == 0 {
+		response.SendSuccess(w, "[]")
+		return
+	}
+	response.SendSuccess(w, &list)
 }
