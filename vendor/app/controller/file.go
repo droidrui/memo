@@ -19,6 +19,8 @@ func init() {
 
 func upload(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
+	mediaType := r.Header.Get("Content-Type")
+	fmt.Println("mediaType=", mediaType)
 	var err error
 	file, err := os.Create(fmt.Sprintf("E:/file/%v.jpg", time.Now().Unix()))
 	if err != nil {
