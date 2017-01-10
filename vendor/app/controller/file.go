@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"app/route/middleware"
 	"os"
+	"time"
 )
 
 func init() {
@@ -19,7 +20,7 @@ func init() {
 func upload(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var err error
-	file, err := os.Create("test.jpg")
+	file, err := os.Create(fmt.Sprintf("E:/file/%v.jpg", time.Now().Unix()))
 	if err != nil {
 		log.Println(err)
 		response.SendError(w, errcode.ServerError)
